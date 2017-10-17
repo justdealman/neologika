@@ -150,6 +150,32 @@ $(function() {
 		$('.fade-bg').removeClass('is-opened');
 		$('body').removeClass('is-locked');
 	}
+	function equalClients() {
+		$('[data-equal]').each(function() {
+			var t = $(this);
+			if ( Modernizr.mq('(min-width:1000px)') ) {
+				var line = 5;
+			} else if ( Modernizr.mq('(max-width:999px)') && Modernizr.mq('(min-width:780px)') ) {
+				var line = 3;
+			} else if ( Modernizr.mq('(max-width:779px)') ) {
+				var line = 1;
+			}
+			var size = t.find('.clients__item').size();
+			t.find('.clients__item p').outerHeight('auto');
+			for ( var i=0; i<Math.floor(size/line); i++ ) {
+				var max = 0;
+				for ( var j=1; j<=line; j++ ) {
+					var n = i*line+j;
+					var h = t.find('.clients__item:nth-child('+n+') p').outerHeight();
+					max = h > max ? h : max;
+				}
+				for ( var j=1; j<=line; j++ ) {
+					var n = i*line+j;
+					t.find('.clients__item:nth-child('+n+') p').outerHeight(max);
+				}
+			}
+		});
+	}
 	function startApp() {
 		detectDevice();
 		if ( justSwitched ) {
@@ -191,6 +217,7 @@ $(function() {
 			}
 		}
 		setRatio();
+		equalClients();
 	}
 	startApp();
 	var lastWidth = $(window).width();
