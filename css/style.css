@@ -218,7 +218,8 @@ div.checker,div.radio{position:relative}div.checker,div.checker input,div.checke
 	display:block;
 	width:321px;
 	height:67px;
-	background:url('../img/logo.png') no-repeat 0 0;
+	background:url('../img/logo-b.png') no-repeat 0 0;
+	background-size:321px 67px;
 }
 .nav {
 	position:absolute;
